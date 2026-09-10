@@ -2,6 +2,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+// Test Comment for proper fork
+
 // Entry point for the Cave Game.
 // Handles game setup, rounds, combat, rewards, and status display.
 public class Main {
