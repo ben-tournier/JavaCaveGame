@@ -1,0 +1,18 @@
+What I learned that I found to be the newest piece of information was the use of the lambda function in the program.
+I first saw it in the context of "players.forEach(p -> System.out.println("Player " + p.getId() + " HP: " + p.getHp())); "
+which caught me off guard at first. After looking more into it things slowly made more sense as the players was an
+array list that was made earlier in the program containing all player objects. The forEach is just a basic built in for 
+loop method to java, and then in the parenthesis the p is taking on each individual player and completing the code within. 
+Once I got that down it made sense like I passed something in to take the variable of p which each player was. The code
+itself simply printed "player" the current player in the list of players id, "HP" , and the current player in the lists hp. 
+
+
+Program Modification
+
+I changed the attack for the player to include two more new options being critical attack and ranged attack. I chose to do it
+because it gave me more options when actually play testing the game and was a lot of interesting variable manipulation and creation.
+The files modified were main and player. The main challenge that I encountered was local variable issues due to the way combat 
+is written to deal with case instead of several if statements like I would have expected. The programming itself was not as challenging
+as I had thought it would be mainly just requiring me to adjust a lot of code already in the program. Other than that the only other 
+minor bump was figuring out a way to implement an ammunition variable with the ranged attack and figure out the best balance with that
+and the normal weapon. 
