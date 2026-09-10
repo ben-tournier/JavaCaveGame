@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Random;
 
 // Test Comment for proper fork
 
@@ -11,6 +12,7 @@ public class Main {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
+        Random rand = new Random();
 
         // ----- Game Setup -----
         System.out.print("How many players enter the cave? ");
@@ -60,6 +62,7 @@ public class Main {
                 goblins.add(new Enemy(10, maxAttackPower));
             }
 
+            // Java version of lambda? ? makes the single context the other has multiple
             System.out.println(
                 goblinCount == 1
                     ? "\nA goblin emerges from the darkness!"
@@ -80,6 +83,8 @@ public class Main {
                     System.out.println("1) Attack");
                     System.out.println("2) Defend");
                     System.out.println("3) Use Healing Potion");
+                    System.out.println("4) Attempt Critical Attack");
+                    System.out.println("5) Ranged attack");
                     System.out.print("> ");
 
                     String choice = scanner.nextLine();
@@ -111,6 +116,56 @@ public class Main {
 
                         case "3":
                             player.usePotion();
+                            break;
+
+                        case "4":
+                            boolean isTrue = rand.nextBoolean();
+                            if (isTrue) {
+                            int crit = 2 * player.attack();
+                            int targetedIndex = (int)(Math.random() * goblins.size());
+                            Enemy targEnemy = goblins.get(targetedIndex);
+
+                            targEnemy.takeDamage(crit);
+                            System.out.println(
+                                "Player " + player.getId() +
+                                " hits Goblin " + targEnemy.getId() +
+                                " for " + crit + " damage!"
+                            );
+
+                            if (!targEnemy.isAlive()) {
+                                System.out.println("Goblin slain!");
+                                goblins.remove(targetedIndex);
+                                totalGoblinsKilled++;
+                            }
+                            break;
+                            }
+                            else {
+                                System.out.println("Your Critical attack did not land");
+                            }
+
+                            case "5": 
+                            int shot = player.rangedAttack();
+                            int index = (int)(Math.random() * goblins.size());
+                            Enemy badGuy = goblins.get(index);
+                            player.heal(1);
+
+                            if (shot == 0) {
+                                break;
+                            }
+                            else {
+                                badGuy.takeDamage(shot);
+                                System.out.println(
+                                    "Player " + player.getId() +
+                                    " shot Goblin " + badGuy.getId() +
+                                    " for " + shot + " damage!"
+                                );
+                            }
+
+                            if (!badGuy.isAlive()) {
+                                System.out.println("Goblin slain!");
+                                goblins.remove(index);
+                                totalGoblinsKilled++;
+                            }
                             break;
 
                         default:

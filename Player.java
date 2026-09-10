@@ -14,17 +14,31 @@ public class Player extends Character {
     // Damage dealt when attacking
     private int weaponDamage;
 
+    // amount of ranged attack a player has
+    private int ammo; 
+
     // Creates a new player with starting stats
     public Player(int hp) {
         super(hp);
         this.id = NEXT_PLAYER_ID++;
         this.potions = 2;
         this.weaponDamage = 4; // Starter weapon damage
+        this.ammo = 3;
     }
 
     // Returns the damage dealt by an attack
     public int attack() {
         return weaponDamage;
+    }
+
+    // returns a base damage two - could be scaled - also removes one from the ammo
+    public int rangedAttack() { 
+        if (ammo <= 0) {
+            System.out.println("Player" + id + " has no ammo to use");
+            return 0;
+        }
+        ammo --;
+        return 2;
     }
 
     // Uses a healing potion to restore random HP
